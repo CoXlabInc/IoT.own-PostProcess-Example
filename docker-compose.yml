@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+  postprocess_example:
+    image: gnbsolar_postprocess
+    build:
+      context: .
+      dockerfile: Dockerfile
+    logging:
+      driver: "local"
+    volumes:
+      - ./PostProcess:/root
+    restart: always
+    command: python3 -u PostProcessExample.py --url=${IOTOWN_URL:-''} --user=${IOTOWN_USER:-''} --token=${IOTOWN_TOKEN:-''}
